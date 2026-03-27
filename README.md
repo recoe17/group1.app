@@ -51,11 +51,25 @@ javac -d out src/sms/*.java
 java -cp out sms.Main
 ```
 
+Run GUI version from terminal:
+
+```bash
+javac -d out src/sms/*.java
+java -cp out sms.GuiMain
+```
+
 ### Windows (Command Prompt)
 
 ```bat
 javac -d out src\sms\*.java
 java -cp out sms.Main
+```
+
+GUI on Windows (Command Prompt):
+
+```bat
+javac -d out src\sms\*.java
+java -cp out sms.GuiMain
 ```
 
 ### Windows (PowerShell)
@@ -65,11 +79,25 @@ javac -d out src/sms/*.java
 java -cp out sms.Main
 ```
 
+GUI on Windows (PowerShell):
+
+```powershell
+javac -d out src/sms/*.java
+java -cp out sms.GuiMain
+```
+
 Using Maven:
 
 ```bash
 mvn compile
 mvn exec:java
+```
+
+Run GUI with Maven:
+
+```bash
+mvn compile
+mvn -Dexec.mainClass=sms.GuiMain exec:java
 ```
 
 ### Windows Maven (Command Prompt or PowerShell)
@@ -98,6 +126,17 @@ For Maven projects in IntelliJ:
 2. IntelliJ should detect `pom.xml` and show **Load Maven Project** (click it).
 3. Ensure Project SDK is Java 17+.
 4. Open `src/sms/Main.java` and run `main()`, or use Maven tool window -> Plugins -> `exec` -> `exec:java`.
+
+To run GUI in IntelliJ:
+
+1. Open `src/sms/GuiMain.java`.
+2. Click the green Run icon next to `main()`.
+3. Use the tabs:
+   - Dashboard
+   - Students
+   - Teachers
+   - Records
+   - Reports
 
 For Windows users in IntelliJ:
 
