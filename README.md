@@ -1,6 +1,6 @@
-# School Management System (Console-Based Java)
+# group1.app — School Management System (Console-Based Java)
 
-This project is a console-based School Management System designed with Object-Oriented Programming principles.
+This project (**group1.app**) is a console-based School Management System designed with Object-Oriented Programming principles.
 
 ## Features
 
@@ -34,62 +34,62 @@ This project is a console-based School Management System designed with Object-Or
 
 ## Project Structure
 
-- `src/sms/Main.java` (console entry)
-- `src/sms/GuiMain.java` (GUI entry)
-- `src/sms/SchoolManagementGui.java`
-- `src/sms/SchoolManagementSystem.java`
+- `src/main/java/sms/Main.java` (console entry)
+- `src/main/java/sms/GuiMain.java` (GUI entry)
+- `src/main/java/sms/SchoolManagementGui.java`
+- `src/main/java/sms/SchoolManagementSystem.java`
 - `run-console.ps1` / `run-gui.ps1` (Windows: compile and run without fixing PATH)
 - `src/test/java/sms/*Test.java` (JUnit)
-- `src/sms/Person.java`
-- `src/sms/Student.java`
-- `src/sms/Teacher.java`
-- `src/sms/Classroom.java`
-- `src/sms/AttendanceRecord.java`
-- `src/sms/AttendanceStatus.java`
-- `src/sms/ResultRecord.java`
-- `src/sms/FeePayment.java`
+- `src/main/java/sms/Person.java`
+- `src/main/java/sms/Student.java`
+- `src/main/java/sms/Teacher.java`
+- `src/main/java/sms/Classroom.java`
+- `src/main/java/sms/AttendanceRecord.java`
+- `src/main/java/sms/AttendanceStatus.java`
+- `src/main/java/sms/ResultRecord.java`
+- `src/main/java/sms/FeePayment.java`
 
 ## How To Run
 
 From the project root:
 
 ```bash
-javac -d out src/sms/*.java
+javac -d out src/main/java/sms/*.java
 java -cp out sms.Main
 ```
 
 Run GUI version from terminal:
 
 ```bash
-javac -d out src/sms/*.java
+javac -d out src/main/java/sms/*.java
 java -cp out sms.GuiMain
 ```
 
 ### Windows (Command Prompt)
 
 ```bat
-javac -d out src\sms\*.java
+javac -d out src\main\java\sms\*.java
 java -cp out sms.Main
 ```
 
 GUI on Windows (Command Prompt):
 
 ```bat
-javac -d out src\sms\*.java
+javac -d out src\main\java\sms\*.java
 java -cp out sms.GuiMain
 ```
 
 ### Windows (PowerShell)
 
 ```powershell
-javac -d out src/sms/*.java
+javac -d out src/main/java/sms/*.java
 java -cp out sms.Main
 ```
 
 GUI on Windows (PowerShell):
 
 ```powershell
-javac -d out src/sms/*.java
+javac -d out src/main/java/sms/*.java
 java -cp out sms.GuiMain
 ```
 
@@ -130,11 +130,11 @@ mvn exec:java
 ## Run in IntelliJ IDEA
 
 1. Open IntelliJ IDEA and choose **Open**.
-2. Select the project folder (e.g. `mbiziapp`).
+2. Select the project folder (e.g. `group1.app`).
 3. Make sure a JDK is configured:
    - Go to **File > Project Structure > Project**.
    - Set **Project SDK** to Java 17+.
-4. In the Project pane, open `src/sms/Main.java`.
+4. In the Project pane, open `src/main/java/sms/Main.java`.
 5. Click the green Run icon next to `main()` and run `Main`.
 6. Use the Run console at the bottom to interact with the menu.
 
@@ -145,11 +145,11 @@ For Maven projects in IntelliJ:
 1. Open the project folder.
 2. IntelliJ should detect `pom.xml` and show **Load Maven Project** (click it).
 3. Ensure Project SDK is Java 17+.
-4. Open `src/sms/Main.java` and run `main()`, or use Maven tool window -> Plugins -> `exec` -> `exec:java`.
+4. Open `src/main/java/sms/Main.java` and run `main()`, or use Maven tool window -> Plugins -> `exec` -> `exec:java`.
 
 To run GUI in IntelliJ:
 
-1. Open `src/sms/GuiMain.java`.
+1. Open `src/main/java/sms/GuiMain.java`.
 2. Click the green Run icon next to `main()`.
 3. Use the tabs:
    - Dashboard

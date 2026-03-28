@@ -4,11 +4,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>zw.school</groupId>
-    <artifactId>studentmbizi-sms</artifactId>
+    <groupId>group1.app</groupId>
+    <artifactId>sms</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <name>School Management System</name>
-    <description>Console-based Java School Management System</description>
+    <name>group1.app</name>
+    <description>School Management System (group1.app)</description>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -27,7 +27,6 @@
     </dependencies>
 
     <build>
-        <sourceDirectory>src</sourceDirectory>
         <testSourceDirectory>src/test/java</testSourceDirectory>
         <plugins>
             <plugin>
