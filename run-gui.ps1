@@ -21,6 +21,6 @@ $env:Path = "$jdkBin;$env:Path"
 
 Set-Location $PSScriptRoot
 New-Item -ItemType Directory -Force -Path out | Out-Null
-javac -d out src/sms/*.java
+javac -d out src/main/java/sms/*.java
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 java -cp out sms.GuiMain
