@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.time.LocalDate;
 import java.util.LinkedHashMap;
@@ -134,8 +135,24 @@ public class SchoolManagementGui extends JFrame {
         top.add(addButton, BorderLayout.SOUTH);
 
         JTable table = new JTable(studentTableModel);
+        JButton removeStudentBtn = new JButton("Remove Selected");
+        removeStudentBtn.addActionListener(e -> {
+            int row = table.getSelectedRow();
+            if (row < 0) {
+                showError("Select a student row to remove.");
+                return;
+            }
+            String id = (String) studentTableModel.getValueAt(row, 0);
+            students.remove(id);
+            refreshAllViews();
+            showInfo("Student removed.");
+        });
+        JPanel studentSouth = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        studentSouth.add(removeStudentBtn);
+
         panel.add(top, BorderLayout.NORTH);
         panel.add(new JScrollPane(table), BorderLayout.CENTER);
+        panel.add(studentSouth, BorderLayout.SOUTH);
         return panel;
     }
 
@@ -203,8 +220,24 @@ public class SchoolManagementGui extends JFrame {
         top.add(addButton, BorderLayout.SOUTH);
 
         JTable table = new JTable(teacherTableModel);
+        JButton removeTeacherBtn = new JButton("Remove Selected");
+        removeTeacherBtn.addActionListener(e -> {
+            int row = table.getSelectedRow();
+            if (row < 0) {
+                showError("Select a teacher row to remove.");
+                return;
+            }
+            String id = (String) teacherTableModel.getValueAt(row, 0);
+            teachers.remove(id);
+            refreshAllViews();
+            showInfo("Teacher removed.");
+        });
+        JPanel teacherSouth = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        teacherSouth.add(removeTeacherBtn);
+
         panel.add(top, BorderLayout.NORTH);
         panel.add(new JScrollPane(table), BorderLayout.CENTER);
+        panel.add(teacherSouth, BorderLayout.SOUTH);
         return panel;
     }
 
@@ -324,12 +357,14 @@ public class SchoolManagementGui extends JFrame {
     private JPanel buildReportsPanel() {
         JPanel panel = new JPanel(new BorderLayout(8, 8));
         panel.setBorder(BorderFactory.createEmptyBorder(12, 12, 12, 12));
-        JPanel buttons = new JPanel(new GridLayout(1, 4, 8, 8));
+        JPanel buttons = new JPanel(new FlowLayout(FlowLayout.LEFT, 8, 8));
 
         JButton studentsBtn = new JButton("Student List");
         studentsBtn.addActionListener(e -> reportsArea.setText(buildStudentListReport()));
         JButton feesBtn = new JButton("Fee Balances");
         feesBtn.addActionListener(e -> reportsArea.setText(buildFeesReport()));
+        JButton feeStatementsBtn = new JButton("Fee Statements");
+        feeStatementsBtn.addActionListener(e -> reportsArea.setText(buildFeeStatementsReport()));
         JButton attendanceBtn = new JButton("Attendance Summary");
         attendanceBtn.addActionListener(e -> reportsArea.setText(buildAttendanceReport()));
         JButton academicBtn = new JButton("Academic Summary");
@@ -337,6 +372,7 @@ public class SchoolManagementGui extends JFrame {
 
         buttons.add(studentsBtn);
         buttons.add(feesBtn);
+        buttons.add(feeStatementsBtn);
         buttons.add(attendanceBtn);
         buttons.add(academicBtn);
 
@@ -438,6 +474,29 @@ public class SchoolManagementGui extends JFrame {
                     .append(" | Paid: ").append(String.format("%.2f", s.getTotalPaid()))
                     .append(" | Balance: ").append(String.format("%.2f", s.getFeesBalance()))
                     .append('\n');
+        }
+        return sb.toString();
+    }
+
+    private String buildFeeStatementsReport() {
+        StringBuilder sb = new StringBuilder("=== Fee Statements ===\n");
+        if (students.isEmpty()) {
+            return sb.append("No students registered.\n").toString();
+        }
+        for (Student s : students.values()) {
+            sb.append("--- ").append(s.getName()).append(" (").append(s.getId()).append(") ---\n");
+            sb.append(String.format("Total due: %.2f | Paid: %.2f | Balance: %.2f%n",
+                    s.getTotalFeesDue(), s.getTotalPaid(), s.getFeesBalance()));
+            if (s.getFeePayments().isEmpty()) {
+                sb.append("No payments recorded.\n");
+            } else {
+                sb.append("Payment history:\n");
+                for (FeePayment p : s.getFeePayments()) {
+                    sb.append(String.format("  %s | %.2f | %s | %s%n",
+                            p.getDate(), p.getAmount(), p.getMethod(), p.getReference()));
+                }
+            }
+            sb.append('\n');
         }
         return sb.toString();
     }

@@ -52,6 +52,14 @@ public class Classroom {
         }
     }
 
+    public void removeStudent(String studentId) {
+        if (studentId == null || studentId.isBlank()) {
+            return;
+        }
+        String trimmed = studentId.trim();
+        studentIds.removeIf(id -> id.equals(trimmed));
+    }
+
     public List<String> getStudentIds() {
         return Collections.unmodifiableList(studentIds);
     }
