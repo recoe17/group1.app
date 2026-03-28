@@ -4,15 +4,18 @@ This project is a console-based School Management System designed with Object-Or
 
 ## Features
 
-- Student registration, update, and class allocation
-- Teacher registration and update
+- Student registration, update, removal, and class allocation
+- Teacher registration, update, and removal
 - Classroom setup and teacher association
 - Attendance recording
 - Results recording and grade generation
-- Fee payment tracking and balance calculation
+- Fee payment tracking, balance calculation, and fee statements (payment history)
+- Optional **Swing** GUI (`GuiMain`) with the same core operations
+- **JUnit 5** unit tests under `src/test/java`
 - Reports:
   - student list
   - fee balances
+  - fee statements
   - attendance summary
   - academic summary
 
@@ -23,7 +26,7 @@ This project is a console-based School Management System designed with Object-Or
 - **Encapsulation**: Private fields with validated setters/getters.
 - **Polymorphism**:
   - Runtime: `displayDetails()` overridden in `Student` and `Teacher`.
-  - Compile-time style: student search via different methods (by ID, name, class).
+  - Compile-time style: overloaded `searchStudent` usage (lookup by ID vs filtered lists by name or class).
 - **Relationships**:
   - IS-A: `Student`/`Teacher` -> `Person`
   - HAS-A: `Student` has attendance, results, and fee payments
@@ -31,8 +34,12 @@ This project is a console-based School Management System designed with Object-Or
 
 ## Project Structure
 
-- `src/sms/Main.java`
+- `src/sms/Main.java` (console entry)
+- `src/sms/GuiMain.java` (GUI entry)
+- `src/sms/SchoolManagementGui.java`
 - `src/sms/SchoolManagementSystem.java`
+- `run-console.ps1` / `run-gui.ps1` (Windows: compile and run without fixing PATH)
+- `src/test/java/sms/*Test.java` (JUnit)
 - `src/sms/Person.java`
 - `src/sms/Student.java`
 - `src/sms/Teacher.java`
@@ -86,6 +93,13 @@ javac -d out src/sms/*.java
 java -cp out sms.GuiMain
 ```
 
+If `java` or `javac` is not recognized (PATH), from the project root run:
+
+```powershell
+.\run-console.ps1
+.\run-gui.ps1
+```
+
 Using Maven:
 
 ```bash
@@ -100,6 +114,12 @@ mvn compile
 mvn -Dexec.mainClass=sms.GuiMain exec:java
 ```
 
+Run tests:
+
+```bash
+mvn test
+```
+
 ### Windows Maven (Command Prompt or PowerShell)
 
 ```bat
@@ -110,7 +130,7 @@ mvn exec:java
 ## Run in IntelliJ IDEA
 
 1. Open IntelliJ IDEA and choose **Open**.
-2. Select the `studentmbizi` folder.
+2. Select the project folder (e.g. `mbiziapp`).
 3. Make sure a JDK is configured:
    - Go to **File > Project Structure > Project**.
    - Set **Project SDK** to Java 17+.
